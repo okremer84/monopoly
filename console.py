@@ -18,7 +18,11 @@ class console():
         
     def prompt_commands(self, list_cmds):
         print("Select a command:")
-        return input(" {} : ".format(list_cmds))
+        cmd = input(" {} : ".format(list_cmds))
+        while (cmd not in list_cmds):
+            print ("Wrong Command, please try again")
+            cmd = input(" {} : ".format(list_cmds))
+        return cmd
     
     def printBoard(self,board):
         for block in board.blocks:

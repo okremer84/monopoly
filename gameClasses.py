@@ -179,6 +179,7 @@ class utilBlock(block):         #utilities and railway stations
             #player=getPlayerFromName(self.owner)
             player.money+=self.price/2
             self.owner='bank'
+            
     def reMortage(self,player):
         if self.owner=='bank':
             player.buy(self)
@@ -306,6 +307,7 @@ class player():
         self.name=name
         self.money=money
         self.assets={}
+        self.mortagedAssets={}
         self.location=0
         self.getOutOfJailCard=False
         self.inJail=False

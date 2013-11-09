@@ -1,4 +1,4 @@
-from gameClasses import *
+﻿from gameClasses import *
 import console as _console
 from statusWindow import *
 from random import *
@@ -64,8 +64,20 @@ class monoGame():
         if not self.winner == -1:
             self.console.show_winner(self.winner)
             
-            
+			
+    def init_commands(self):
+        current_commands = list()
+        if (self.rolled_already == False):
+            current_commands.append(ROLL)
+        if (len(self.players[self.current_player].assets) > 0):
+            current_commands.append(BUILD) 
+            current_commands.append(MORTAGE)
+            current_commands.append(UNMORTAGE)
+        current_commands.append(TRADE)
+        current_commands.append(END)
+        self.commands = current_commands
 
+		
     def next_turn(self):
         # main game logic
         self.commands=allComands
@@ -74,6 +86,8 @@ class monoGame():
         self.curr_player_name = self.players[self.current_player].name
         self.console.display("{} takes the turn!".format(self.curr_player_name))
         while not self.end_turn:
+            #self.commands = init_commands(self)
+            self.init_commands()
             cmd = self.console.prompt_commands(self.commands)
             self.players[self.current_player].printPlayer()
             if cmd == "roll":
@@ -103,10 +117,7 @@ class monoGame():
                     self.rolled_already = True
                     # movement around the board and actions on landing
                     dice_sum=dice[0]+dice[1]
-                    #self.do_move(dice_sum)    #commenting for testing!
-                    self.do_move(val)      #testing
-                    self.rolled_already = False  #testing
-                    
+                    self.do_move(dice_sum)   
         else:
                     self.console.display("You have already rolled the dice")
                     
