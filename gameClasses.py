@@ -71,8 +71,8 @@ class changeMoneyCard(card):
         if self.commune:        
             for p in players:
                 if p.name!=player.name:
-                    player.money+=self.ammount
-                    p.money-=self.ammount
+                    player.money+=self.amount
+                    p.money-=self.amount
                     console.display(player.name+" got "+self.amount+"$ from"+p.name)
         else:            
             player.money+=self.amount
@@ -312,8 +312,8 @@ class player():
         self.getOutOfJailCard=False
         self.inJail=False
         
-    def pay(self,ammount):
-        self.money-=ammount
+    def pay(self,amount):
+        self.money-=amount
         
     def buy(self,assetBlock):
         self.money+=assetBlock.price
